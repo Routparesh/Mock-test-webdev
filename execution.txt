@@ -1,0 +1,54 @@
+An execution context consists of three main components:
+
+1. Variable Environment: It includes all the variables and function declarations defined in the current scope. The variable environment also stores the value of variables. When a function is executed, a new variable environment is created and stored in memory.
+
+2. Scope Chain: It represents the hierarchical chain of variable environments. It allows access to variables from outer scopes. When a variable is accessed, the JavaScript engine first looks for it in the current scope and then searches up the scope chain until the variable is found or until the global scope is reached.
+
+3. "this" value: It refers to the object that the current code is being executed upon. The value of "this" depends on how a function is invoked. It can vary depending on whether the function is called as a method, constructor, or standalone function.
+
+Here is a diagram illustrating the concept of execution contexts:
+
+```
+                    Global Execution Context
+  ______________________________________________________
+ |                                                        |
+ | Variable Environment    Scope Chain       this value   |
+ |                                                        |
+ | Variables, functions,   Global Scope       Global      |
+ | and global declarations                     object     |
+ |______________________________________________________|
+
+                 Execution Context Stack
+ ______________________________________________________
+|                                                        |
+|                Function Execution Context               |
+|  __________________________________________________  |
+| |                                                  | |
+| | Variable Environment    Scope Chain       this value| |
+| |                                                  | |
+| |  Variables, functions,  Function Scope     Object   | |
+| |  and local declarations                     calling | |
+| |                                                  | |
+| |__________________________________________________| |
+|                                                        |
+|                Function Execution Context               |
+|  __________________________________________________  |
+| |                                                  | |
+| | Variable Environment    Scope Chain       this value| |
+| |                                                  | |
+| |  Variables, functions,  Function Scope     Object   | |
+| |  and local declarations                     calling | |
+| |                                                  | |
+| |__________________________________________________| |
+|                                                        |
+|                      ...                               |
+|________________________________________________________|
+
+```
+
+The diagram shows a global execution context and multiple function execution contexts stacked on top of each other in the execution context stack. Each execution context has its own variable environment, scope chain, and "this" value.
+
+When a function is invoked, a new function execution context is created and pushed onto the execution context stack. Once the function completes execution, its execution context is popped off the stack, and the control is returned to the previous execution context.
+
+The execution context concept is crucial for understanding how JavaScript manages the scope, variables, and function calls during the execution of code. It helps ensure that variables are accessed correctly and that the right context is used when executing functions.
+
